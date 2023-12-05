@@ -18,7 +18,7 @@
 
 
 function [spin, X, Y] = XYWolff(spin, kT, j, L, mode)
-    assert((mode == 1) || (mode == 2), 'mode value can only be 0 or 1.');
+    assert((mode == 0) || (mode == 1), 'mode value can only be 0 or 1.');
     theta = 2*rand;
     A = latticeAdjacencyMatrix(L,L);
     B = zeros(L^2); % Stores bond activation states
