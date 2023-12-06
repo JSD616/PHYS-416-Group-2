@@ -8,7 +8,7 @@ function [vort] = Vorticity(spin, L)
     vort = zeros(L-1);
     for x = 1:L-1
         for y = 1:L-1
-            vort(x,y) = DirAngle(spin(x,y),spin(x+1,y)) + DirAngle(spin(x+1,y),spin(x+1,y+1)) + DirAngle(spin(x+1,y+1),spin(x,y+1)) + DirAngle(spin(x,y+1),spin(x,y));
+            vort(x,y) = (DirAngle(spin(x,y),spin(x+1,y)) + DirAngle(spin(x+1,y),spin(x+1,y+1)) + DirAngle(spin(x+1,y+1),spin(x,y+1)) + DirAngle(spin(x,y+1),spin(x,y)))/2;
         end
     end
 end
