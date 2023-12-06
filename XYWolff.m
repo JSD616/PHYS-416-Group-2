@@ -20,7 +20,7 @@ function [spin, X, Y, clusterMap] = XYWolff(spin, kT, j, L, mode)
     assert((mode == 0) || (mode == 1), 'mode value can only be 0 or 1.');
     theta = 2*rand;
     %A = latticeAdjacencyMatrix(L,L);
-    B = zeros(L^2); % Stores bond activation states
+    B = sparse(L^2); % Stores bond activation states
     for x = 1:(L-mode)
         for y = 1:(L-mode)
             % Incorporates toroidal wrap-around when mode = 0
