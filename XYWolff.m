@@ -20,7 +20,7 @@ function [spin, X, Y, clusterMap] = XYWolff(spin, kT, j, L, mode)
     assert((mode == 0) || (mode == 1), 'mode value can only be 0 or 1.');
     theta = 2*rand;
     %A = latticeAdjacencyMatrix(L,L);
-    B = sparse(L^2); % Stores bond activation states
+    B = sparse(L^2,L^2); % Stores bond activation states
     for x = 1:(L-mode)
         for y = 1:(L-mode)
             % Incorporates toroidal wrap-around when mode = 0
@@ -29,7 +29,6 @@ function [spin, X, Y, clusterMap] = XYWolff(spin, kT, j, L, mode)
             row = [x,xNext,x];
             col = [y,y,yNext];
             ind = sub2ind(size(spin),row,col);
-            ind
             cosProdRight = cospi(spin(x,y)-theta)*cospi(spin(xNext,y)-theta);
             cosProdDown = cospi(spin(x,y)-theta)*cospi(spin(x,yNext)-theta);
             if cosProdRight >= 0
@@ -58,7 +57,6 @@ function [spin, X, Y, clusterMap] = XYWolff(spin, kT, j, L, mode)
     
     % Effectively assign a coin flip to each cluster
     p = rand(max(clusters),1);
-    
     clusterMap = zeros(L,L);
     for ind = 1:L^2
         [row, col] = ind2sub(size(spin),ind);
