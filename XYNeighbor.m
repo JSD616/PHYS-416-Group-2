@@ -31,3 +31,5 @@ function [Neighbors] = XYNeighbor(L,x,y,mode)
         end
     end
 end
+    
+        
